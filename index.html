@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<!-- 
+    StreamFlix - Landing Page
+    =========================
+    Estructura HTML principal con enfoque en accesibilidad y semántica.
+    Implementación de WAI-ARIA para mejorar la experiencia de usuarios
+    con tecnologías asistivas.
+-->
+<html lang="es">
+<head>
+    <!-- Metadatos básicos -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="StreamFlix - Tu plataforma de streaming favorita con las mejores películas y series">
+    <title>StreamFlix - Plataforma de Streaming</title>
+    
+    <!-- Optimización de carga: preload para recursos críticos -->
+    <link rel="preload" href="assets/css/styles.css" as="style">
+    <link rel="preload" href="assets/js/main.js" as="script">
+    
+    <!-- Optimización de conexiones a recursos externos -->
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
+    
+    <!-- Estilos principales -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <!-- 
+        Modal de contacto
+        ----------------
+        Implementado como diálogo accesible con atributos ARIA.
+        Permanece oculto hasta que se activa mediante interacción.
+    -->
+    <div id="contact-modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+        <div class="modal-content">
+            <button id="close-contact" class="close-btn" aria-label="Cerrar modal">&times;</button>
+            <h2 id="modal-title">Contacto</h2>
+            <p>Suscríbete para no perderte de nuevas pelis!!</p>
+            
+            <!-- Formulario con validación y feedback accesible -->
+            <form id="contact-form" class="form-contacto" novalidate>
+                <!-- Campo Nombre con validación -->
+                <div class="form-group">
+                    <label for="contact-nombre">Nombre</label>
+                    <input type="text" id="contact-nombre" name="nombre" placeholder="Tu nombre" required 
+                           aria-required="true" aria-describedby="nombre-error">
+                    <span id="nombre-error" class="error-message" aria-live="polite"></span>
+                </div>
+                
+                <!-- Campo Email con validación -->
+                <div class="form-group">
+                    <label for="contact-email">Correo electrónico</label>
+                    <input type="email" id="contact-email" name="email" placeholder="tu@email.com" required 
+                           aria-required="true" aria-describedby="email-error">
+                    <span id="email-error" class="error-message" aria-live="polite"></span>
+                </div>
+                
+                <!-- Campo Teléfono con formato específico -->
+                <div class="form-group">
+                    <label for="contact-numero">Número de contacto</label>
+                    <input type="tel" id="contact-numero" name="numero" 
+                           placeholder="+56 9 1234 5678" pattern="^\+56\s?9\s?\d{4}\s?\d{4}$" required
+                           aria-required="true" aria-describedby="numero-error">
+                    <span id="numero-error" class="error-message" aria-live="polite"></span>
+                </div>
+                
+                <!-- Campo de mensaje (textarea) -->
+                <div class="form-group">
+                    <label for="contact-mensaje">Mensaje</label>
+                    <textarea id="contact-mensaje" name="mensaje" placeholder="Tu mensaje" required
+                              aria-required="true" aria-describedby="mensaje-error"></textarea>
+                    <span id="mensaje-error" class="error-message" aria-live="polite"></span>
+                </div>
+                
+                <button type="submit" class="btn">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 
+        Cabecera principal
+        -----------------
+        Contiene logo y navegación, se mantiene fija durante el scroll
+    -->
+    <header class="header" role="banner">
+        <!-- Logo de la marca -->
+        <div class="logo" role="img" aria-label="StreamFlix">StreamFlix</div>
+        
+        <!-- Navegación principal con soporte para móviles -->
+        <nav class="nav" role="navigation" aria-label="Navegación principal">
+            <!-- Botón de menú para móviles (visible solo en pantallas pequeñas) -->
+            <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+                <span class="menu-icon"></span>
+            </button>
+            
+            <!-- Lista de navegación principal -->
+            <ul class="nav-list">
+                <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li><a href="#tendencias" class="nav-link">Tendencias</a></li>
+                <li><a href="#mi-lista" class="nav-link">Mi Lista</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 
+        Contenido principal
+        ------------------
+        Contiene todas las secciones importantes de la página
+    -->
+    <main id="main-content" role="main">
+        <!-- 
+            Banner principal con slider dinámico
+            El slider se implementa mediante JS que cambia el fondo
+        -->
+        <section class="banner" id="inicio" aria-label="Banner principal">
+            <div class="banner-content">
+                <h1>Disfruta las mejores películas y series en StreamFlix</h1>
+                <p>Tu plataforma de streaming favorita, donde y cuando quieras.</p>
+                <button id="ver-tendencias" class="btn">Ver tendencias</button>
+            </div>
+        </section>
+
+        <!-- 
+            Sección de películas en tendencia
+            Los elementos se renderizan dinámicamente con JavaScript
+        -->
+        <section class="carrusel" id="tendencias" aria-labelledby="tendencias-title">
+            <h2 id="tendencias-title">Tendencias</h2>
+            <div class="peliculas" id="peliculas-tendencias" role="list" aria-label="Películas en tendencia"></div>
+        </section>
+
+        <!-- 
+            Sección de películas guardadas en "Mi lista"
+            Los elementos se renderizan dinámicamente con JavaScript
+        -->
+        <section class="carrusel" id="mi-lista" aria-labelledby="mi-lista-title">
+            <h2 id="mi-lista-title">Mi Lista</h2>
+            <div class="peliculas" id="peliculas-lista" role="list" aria-label="Mi lista de películas"></div>
+        </section>
+
+        <!-- 
+            Sección de interacción con ejemplos de manipulación DOM
+            Demuestra diferentes tipos de interactividad con JavaScript
+        -->
+        <div class="cosas">
+            <h2 class="section-title">Interactúa con StreamFlix</h2>
+            <div class="interactive-grid">
+                <!-- Ejemplo 1: Mostrar/Ocultar mensaje -->
+                <section class="interactive-card" aria-labelledby="ejemplo1-title">
+                    <h3 id="ejemplo1-title">Mensaje Especial</h3>
+                    <div class="card-content">
+                        <p>Descubre contenido exclusivo</p>
+                        <div class="botones">
+                            <button id="btnMostrar" class="btn" aria-expanded="false" aria-controls="mensaje">
+                                <span class="btn-icon">🎬</span>
+                                Mostrar/Ocultar Mensaje
+                            </button>
+                        </div>
+                        <div id="mensaje" class="mensaje-oculto" role="alert">
+                            <p>¡Bienvenido a StreamFlix! Disfruta de las mejores películas y series en un solo lugar.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Ejemplo 2: Saludo personalizado con input en tiempo real -->
+                <section class="interactive-card" aria-labelledby="ejemplo2-title">
+                    <h3 id="ejemplo2-title">Saludo Personalizado</h3>
+                    <div class="card-content">
+                        <p>¿Cómo te gustaría que te llamemos?</p>
+                        <div class="botones">
+                            <div class="input-group">
+                                <input id="nombre" type="text" placeholder="Escribe tu nombre" aria-label="Tu nombre">
+                                <span id="saludo" class="saludo-text" role="status" aria-live="polite"></span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Ejemplo 3: Crear y eliminar elementos del DOM -->
+                <section class="interactive-card" aria-labelledby="ejemplo3-title">
+                    <h3 id="ejemplo3-title">Gestiona tu Lista</h3>
+                    <div class="card-content">
+                        <p>Personaliza tu experiencia</p>
+                        <div class="botones">
+                            <button id="crearPelicula" class="btn">
+                                <span class="btn-icon">➕</span>
+                                Crear Película
+                            </button>
+                            <button id="eliminarPelicula" class="btn">
+                                <span class="btn-icon">➖</span>
+                                Eliminar Película
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Pie de página con copyright e información legal -->
+    <footer role="contentinfo">
+        <p>&copy; 2025 StreamFlix. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- 
+        Scripts al final para mejor rendimiento
+        Con atributo defer para carga asíncrona sin bloqueo
+    -->
+    <script defer src="assets/js/main.js"></script>
+</body>
+</html>
