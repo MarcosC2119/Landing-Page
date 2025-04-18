@@ -2,6 +2,11 @@
 
 Una landing page moderna, accesible y responsiva para un servicio de streaming ficticio. Desarrollada con HTML, CSS y JavaScript.
 
+<div align="center">
+  <h2>✨ <a href="https://teclab.uct.cl/~marcos.castro/proyectos/Landing_Page/index.html">Ver Demo en Vivo</a> ✨</h2>
+  <img src="https://img.shields.io/badge/Demo-Activa-brightgreen.svg" alt="Demo Activa">
+</div>
+
 ![Licencia MIT](https://img.shields.io/badge/Licencia-MIT-green.svg)
 ![Versión](https://img.shields.io/badge/Versión-1.2.0-blue.svg)
 
